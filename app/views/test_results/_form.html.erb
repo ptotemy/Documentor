@@ -1,0 +1,40 @@
+<%= form_for @test_result do |f| %>
+
+
+<% if @test_result.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@test_result.errors.count, "error") %> prohibited this test_resultfrom being saved:</h2>
+
+          <ul>
+            <% @test_result.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+<table class="condensed-table">
+      <tr>
+        <td><%= f.label :test_doc_info_id %></td>
+
+        <td><%= f.select :test_doc_info_id,Test.all.collect{|var|[var.name,var.id]} %></td>
+
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :answer_key %></td>
+
+        <td><%= f.number_field :answer_key %></td>
+            
+      </tr>
+
+</table>
+<br>
+<br>
+
+<%= f.submit "Submit" ,:style=>"margin:auto",:class=>"btn primary large"%>
+
+<% end %>

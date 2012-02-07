@@ -1,0 +1,12 @@
+<h2>Here Are the documents that you have taken tests for:</h2>
+<span class="pull-left">Your Score for this test :<%= @total_score %></span>
+<br>
+<br>
+<br>
+
+
+<% @test_docs.each do |test_doc| %>
+
+    <%= link_to Document.find(test_doc.document_id).name ,view_corrected_document_path(:document_id=>test_doc.document_id,:team_id=>@team.id,:test_id=>@test.id)%>
+<% end %>
+

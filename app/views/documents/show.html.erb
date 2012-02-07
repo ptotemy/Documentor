@@ -1,0 +1,16 @@
+<span style="color:white"><%  "Document" %></span>
+
+<p>
+  <strong>Name:</strong>
+  <%= @document.name %>
+</p>
+<p>
+  <strong>Blank Form File Name:</strong>
+  <%= @document.blank_form_file_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_document_path(@document) %> |
+  <%= link_to "Destroy", @document, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", documents_path %>
+</p>

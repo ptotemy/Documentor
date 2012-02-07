@@ -1,0 +1,22 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Components" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Component Icon File Name</th>
+  </tr>
+  <% for component in @components %>
+    <tr>
+      <td><%= component.name %></td>
+      <td><%= component.component_icon_file_name %></td>
+      <td><%= link_to "Show", component %></td>
+      <td><%= link_to "Edit", edit_component_path(component) %></td>
+      <td><%= link_to "Destroy", component, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Component", new_component_path %></p>

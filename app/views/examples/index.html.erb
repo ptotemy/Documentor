@@ -1,0 +1,22 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Examples" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Content File Name</th>
+  </tr>
+  <% for example in @examples %>
+    <tr>
+      <td><%= example.name %></td>
+      <td><%= example.content_file_name %></td>
+      <td><%= link_to "Show", example %></td>
+      <td><%= link_to "Edit", edit_example_path(example) %></td>
+      <td><%= link_to "Destroy", example, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Example", new_example_path %></p>

@@ -1,0 +1,115 @@
+<%= content_for :page_header do %>
+    <span style="border: none;font-size: 40px;font-weight: bold;vertical-align: middle;text-align: left;width: 130px;color: white">DocuMentor</span>
+
+<% end %>
+<div class="row">
+  <div class="span10">
+    <h1>Your DashBoard</h1>
+
+    <div class="row">
+      <div class="span6">
+
+
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.
+        <br/>
+
+      </div>
+      <div class="span3">
+        <br/>
+        <% if !current_user %>
+            <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
+              <a href="#" data-controls-modal="sign_up_form" data-backdrop="static" class="btn primary">Sign Up...</a>
+            </div>
+        <% else %>
+            <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
+              <%= link_to "Enter >>", "#", :class=>"btn primary" %>
+            </div>
+        <% end %>
+        <div id="sign_up_form" class="modal hide fade">
+          <div class="modal-header">
+            <a href="#" class="close"> &times; </a>
+
+            <h3>Sign Up</h3>
+          </div>
+
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+              <div class="modal-body">
+
+                <div class="clearfix">
+                  <%= f.label :email %>
+                  <div class="input">  <%= f.email_field :email %></div>
+
+                  <%= f.label :password %>
+                  <div class="input">  <%= f.password_field :password %></div>
+
+                  <%= f.label :re_enter %>
+                  <div class="input">  <%= f.password_field :password_confirmation %></div>
+                </div>
+
+              </div>
+
+
+              <div class="modal-footer">
+
+                <div>
+                  <%= f.submit "Sign up", :class=>"btn error" %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="span4">
+    <table>
+      <tr style="border: none;">
+        <td style="border: none;">
+          <%= image_tag("docket.jpeg", :size => "64x64") %>
+        </td>
+        <td style="border: none;">
+         Manage your Dockets
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag("documents.jpeg", :size => "64x64") %>
+        </td>
+        <td>
+        <%= link_to  "Manage your Documents",document_integrated_view_path,:class => "primary btn" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag("test.jpeg", :size => "70x70") %>
+        </td>
+        <td>
+        <%= link_to "Manage Tests" ,test_integrated_view_path,:class => "primary btn"%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag("user.jpeg", :size => "70x70") %>
+        </td>
+        <td>
+         <%= link_to "Manage Users",user_management_path,:class=>"primary btn" %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= image_tag("dept.jpeg", :size => "70x70") %>
+        </td>
+        <td>
+         <%= link_to "Manage Departments",new_department_path,:class=>"primary btn" %>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<!-- /container -->

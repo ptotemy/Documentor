@@ -1,0 +1,16 @@
+<span style="color:white"><%  "Test Result" %></span>
+
+<p>
+  <strong>Test Doc Info:</strong>
+  <%= @test_result.test_doc_info_id %>
+</p>
+<p>
+  <strong>Answer Key:</strong>
+  <%= @test_result.answer_key %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_test_result_path(@test_result) %> |
+  <%= link_to "Destroy", @test_result, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", test_results_path %>
+</p>

@@ -1,0 +1,22 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Documents" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Blank Form File Name</th>
+  </tr>
+  <% for document in @documents %>
+    <tr>
+      <td><%= document.name %></td>
+      <td><%= document.blank_form_file_name %></td>
+      <td><%= link_to "Show", document %></td>
+      <td><%= link_to "Edit", edit_document_path(document) %></td>
+      <td><%= link_to "Destroy", document, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Document", new_document_path %></p>

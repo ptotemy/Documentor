@@ -1,0 +1,16 @@
+<span style="color:white"><%  "Component" %></span>
+
+<p>
+  <strong>Name:</strong>
+  <%= @component.name %>
+</p>
+<p>
+  <strong>Component Icon File Name:</strong>
+  <%= @component.component_icon_file_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_component_path(@component) %> |
+  <%= link_to "Destroy", @component, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", components_path %>
+</p>

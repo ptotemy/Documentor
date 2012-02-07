@@ -1,0 +1,237 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "/assets/exclusions/jquery_data_table" %>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $('#example').dataTable({
+                "bJQueryUI": true,
+                "sPaginationType": "full_numbers"
+            });
+
+            $(".source").click(function(){
+                $(".docket_form_team_id").attr("value",$(this).attr("id"));
+
+            }) ;
+
+        })
+    </script>
+
+<% end %>
+
+<%= content_for :page_header do %>
+    <div class="pull-left" style="border: none;"><%= image_tag('logo.png') %></div>
+<% end %>
+
+<div class="row">
+
+  <div class="span4" style="text-align: center">
+    <div class="pageslide_header">
+      <h1>"Tests"</h1>
+    </div>
+    <br/>
+    <br/>
+    <table>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+            <%= image_tag('new.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+            <h2>Create New</h2>
+          </a>
+
+          <div id="new_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Create new record</h3>
+            </div>
+            <div class="modal-body">
+              <%= render 'form' %>
+            </div>
+          </div>
+
+
+          <div id="edit_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Edit a record</h3>
+            </div>
+            <div class="modal-body">
+
+            </div>
+          </div>
+
+
+          <br>
+          <br>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+            <%= image_tag('upload.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+            <h2>Upload</h2>
+          </a>
+
+          <div id="upload_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Upload Excel File</h3>
+            </div>
+            <%= form_tag('/test/parse_save_from_excel', :multipart => true) do |f| %>
+                <div class="modal-body">
+                  Select an Excel File :
+                  <%= file_field_tag :excel_file %>
+                </div>
+
+                <div class="modal-footer">
+                  <%= submit_tag 'Submit', :class=>"large btn primary pull-left" %>
+                </div>
+            <% end -%>
+
+          </div>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%= new_test_path %>" class="add_new span3">
+            <%= image_tag('download.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href=" <%= new_test_path %>" class="add_new span3">
+            <h2>Download</h2>
+          </a>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+  <div class="span12">
+    <table class="jqueried_table display" cellpadding="0" cellspacing="0" border="0" id="example">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Manage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @tests.each do |test| %>
+          <tr>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= test.name %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= TestType.find(test.test_type_id).name %></a>
+            </td>
+
+
+            <td class="options">
+              <a href="#" id="<%= test.id %> " class="edit_link">Edit</a>|
+              <%= link_to "Destroy", test, :confirm => 'Are you sure?', :method => :delete %> |
+              <% if test.test_type_id==1 %>
+                   <a href="#" class="source" data-controls-modal="docket_form" data-backdrop="static" id="<%= test.id %>">Assign Docket</a>
+              <% else %>
+                 <a href="#" class="source" data-controls-modal="document_form" data-backdrop="static" id="<%= test.id %>">Assign Docket</a>
+              <% end %>
+
+            </td>
+          </tr>
+
+
+          <div id="show_details" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3><%= "Test" %></h3>
+            </div>
+            <div class="modal-body">
+              <p>
+                <strong>Name:</strong>
+                <%= test.name %>
+              </p>
+
+              <p>
+                <strong>Type:</strong>
+                <%= TestType.find(test.test_type_id).name %>
+              </p>
+
+
+            </div>
+
+            <div class="modal-footer">
+              <a href="#" class="close"> Back </a>
+            </div>
+          </div>
+      <%- end -%>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+<br/>
+
+
+<!--assign document form modal-->
+
+
+<div id="docket_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Assign Docket</h3>
+            </div>
+            <div class="modal-body">
+              <%= form_tag :action=>'add_docket' %>
+              <%= hidden_field_tag :test_id,0,:class=>"docket_form_team_id" %>
+              <%= select_tag :source_id,options_from_collection_for_select(Docket.all,"id","name") %>
+            </div>
+
+            <div class="modal-footer">
+             <%= submit_tag %>
+            </div>
+          </div>
+
+<!--end of document form modal-->
+
+
+
+<!--assign document form modal-->
+
+
+<div id="document_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Assign Docket</h3>
+            </div>
+            <div class="modal-body">
+              <%= form_tag :action=>'add_docket' %>
+              <%= hidden_field_tag :test_id,0,:class=>"docket_form_team_id" %>
+              <%= select_tag :source_id,options_from_collection_for_select(Document.all,"id","name") %>
+            </div>
+
+            <div class="modal-footer">
+             <%= submit_tag %>
+            </div>
+          </div>
+
+<!--end of document form modal-->

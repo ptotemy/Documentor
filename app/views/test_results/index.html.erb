@@ -1,0 +1,22 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Test Results" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Test Doc Info</th>
+    <th>Answer Key</th>
+  </tr>
+  <% for test_result in @test_results %>
+    <tr>
+      <td><%= test_result.test_doc_info_id %></td>
+      <td><%= test_result.answer_key %></td>
+      <td><%= link_to "Show", test_result %></td>
+      <td><%= link_to "Edit", edit_test_result_path(test_result) %></td>
+      <td><%= link_to "Destroy", test_result, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Test Result", new_test_result_path %></p>

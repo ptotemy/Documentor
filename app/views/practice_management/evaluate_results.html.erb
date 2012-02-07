@@ -1,0 +1,104 @@
+<%= content_for :head do %>
+
+    <script type="text/javascript">
+
+        $(function() {
+            $(".option_image").click(function(event) {
+
+                //if the image is marked correct..mark it incorrect
+                if ($(this).attr("class").search("success") != -1) {
+                    $(this).addClass("error");
+                    $(this).removeClass("success");
+                    $("." + $(this).attr("id")).attr("value", 1);
+
+                }
+
+                //if the image is incorrect...mark is correct
+                else {
+                    $(this).addClass("success");
+                    $(this).removeClass("error");
+                    $("." + $(this).attr("id")).attr("value", 0);
+                }
+
+
+            });
+
+        });
+
+    </script>
+
+    <style type="text/css">
+        .content {
+            background: transparent;
+        }
+
+        .page-header {
+            background: transparent;
+            position: fixed;
+            left: 25px;
+            border: none;
+        }
+
+        .docuframe {
+            width: 800px;
+            height: 1080px;
+            margin: 0px auto;
+            padding: 0px;
+            background-image: url("<%= @document.blank_form.url %>");
+            background-repeat: no-repeat;
+        }
+
+        .component_icon {
+            cursor: pointer;
+        }
+
+        .selected_icon {
+            margin-left: 30px;
+        }
+
+        .selectiondiv {
+            position: absolute;
+            zIndex: 5000;
+        }
+    </style>
+
+<% end %>
+
+
+
+<div class="row" style="text-align: center; background: transparent">
+  <div id="DocumentFrame" class="docuframe">
+  </div>
+
+
+  <% @practice_examples.each_with_index do |practice_example, index| %>
+
+
+      <% example=Example.find(practice_example[0]) %>
+      <% blank_section=BlankSection.find(practice_example[1]) %>
+      <% if params[example.id.to_s]==example.correct  %>
+          <% @class="success" %>
+          <% else %>
+          <% @class="error" %>
+          <% end %>
+
+      <%= image_tag example.content.url, :id=>blank_section.id, :class=>"#{@class} btn option_image", :style => "
+          position :absolute;
+          z-index:5000;
+          top :#{blank_section.ypos  }px;
+          left: #{blank_section.xpos}px;
+          width: #{blank_section.width} px;
+          height:#{blank_section.height }px;
+          "
+      %>
+
+
+  <% end %>
+</div>
+
+
+<div style="position:fixed; color:white;font-weight: bold;margin-top: 20px;top:50px;left:30px;height: 50px">
+  <%= link_to image_tag('submit_button.jpeg', :size=>'50x40', :class=>"primary btn", :id=>"save_button"),practice_document_path(:document_id=>@document.id) %>
+  <br/>
+  <br/>
+</div>

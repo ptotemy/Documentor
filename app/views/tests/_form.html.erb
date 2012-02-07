@@ -1,0 +1,40 @@
+<%= form_for @test do |f| %>
+
+
+    <% if @test.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@test.errors.count, "error") %> prohibited this testfrom being saved:</h2>
+
+          <ul>
+            <% @test.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+    <table class="condensed-table">
+      <tr>
+        <td><%= f.label :name %></td>
+
+        <td><%= f.text_field :name %></td>
+
+      </tr>
+
+      <tr>
+        <td><%= f.label :test_type_id %></td>
+
+        <td><%= f.select :test_type_id, TestType.all.collect { |test_type| [test_type.name, test_type.id] } %></td>
+
+      </tr>
+
+
+    </table>
+    <br>
+    <br>
+
+    <%= f.submit "Submit", :style=>"margin:auto", :class=>"btn primary large" %>
+
+<% end %>

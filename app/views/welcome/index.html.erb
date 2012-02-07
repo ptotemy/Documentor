@@ -1,0 +1,125 @@
+<%= content_for :page_header do %>
+    <span style="border: none;font-size: 40px;font-weight: bold;vertical-align: middle;text-align: left;width: 130px;color: white">DocuMentor</span>
+
+<% end %>
+<div class="row">
+  <div class="span10">
+    <h1>Documentation made easy</h1>
+
+    <div class="row">
+      <div class="span6">
+        Credit Administration is a function at most banks and financial institutions,
+        which provides multiple services to various businesses and across a wide spectrum of clients.
+        The core engine of the business of finance, you will need to interact with them to close any and all deals you
+        strike with your clients.
+
+        <br/>
+        <br/>
+        So we decided to create for you a tool that will help you understand various legal / operation documents and
+        processes.
+        It is specifically designed keeping in mind your busy and mobile work-life, and targeted to allow you to learn
+        at your pace and in your own time.
+        With this and your co-operation, we hope your firm realizes the path to improved TATs, lower costs, higher
+        efficiency and through it all, customer delight.
+
+        <br/>
+        <br/>
+        <br/>
+
+        <span style="font-size: 20px">Help us help you better...</span><br/>
+
+        <br/>
+        <br/>
+
+      </div>
+      <div class="span3">
+        <br/>
+        <% if !current_user %>
+            <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
+              <a href="#" data-controls-modal="sign_up_form" data-backdrop="static" class="btn primary">Sign Up...</a>
+            </div>
+        <% else %>
+            <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
+              <%= link_to "Enter >>", "#", :class=>"btn primary" %>
+            </div>
+        <% end %>
+        <div id="sign_up_form" class="modal hide fade">
+          <div class="modal-header">
+            <a href="#" class="close"> &times; </a>
+
+            <h3>Sign Up</h3>
+          </div>
+
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+              <div class="modal-body">
+
+                <div class="clearfix">
+                  <%= f.label :email %>
+                  <div class="input">  <%= f.email_field :email %></div>
+
+                  <%= f.label :password %>
+                  <div class="input">  <%= f.password_field :password %></div>
+
+                  <%= f.label :re_enter %>
+                  <div class="input">  <%= f.password_field :password_confirmation %></div>
+                  <%= f.label :admin %>
+                  <div class="input">  <%= f.check_box :admin %></div>
+
+                </div>
+
+              </div>
+
+
+              <div class="modal-footer">
+
+                <div>
+                  <%= f.submit "Sign up", :class=>"btn error" %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="span4">
+    <table>
+      <tr style="border: none;">
+        <td style="border: none;">
+          <%= image_tag("mind_map.jpg", :size => "64x64") %>
+        </td>
+        <td style="border: none;">
+          Built on an Exploration based Training Structure
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag("system.png", :size => "64x64") %>
+        </td>
+        <td>
+          Access it from anywhere as a Reference Guide
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag("quiz.jpg", :size => "70x70") %>
+        </td>
+        <td>
+          Practical quizzes where you actually check docs online
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= image_tag("knowledge.jpg", :size => "70x70") %>
+        </td>
+        <td>
+          Understand Credit Concepts, Products and Documents
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- /container -->

@@ -1,0 +1,11 @@
+<h1>You have taken the following test</h1>
+
+<% @teams.each do |team| %>
+
+    <% team.tests.each do |test| %>
+        <%= test.name %>
+    <%= link_to  "(View Results)",view_results_path(:test_id=>test.id,:team_id=>team.id) %>
+        <% end %>
+
+
+<% end %>

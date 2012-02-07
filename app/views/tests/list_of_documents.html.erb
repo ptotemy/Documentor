@@ -1,0 +1,10 @@
+<table>
+<% @documents.each do |document| %>
+
+      <tr>
+  <td><%= document.name %></td>
+   <td><%= link_to "Generate Test Document",generate_test_document_path(:document_id=>document.id) %></td>
+      </tr>
+
+  <% end %>
+</table>

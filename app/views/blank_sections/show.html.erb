@@ -1,0 +1,32 @@
+<span style="color:white"><%  "Blank Section" %></span>
+
+<p>
+  <strong>Document:</strong>
+  <%= @blank_section.document_id %>
+</p>
+<p>
+  <strong>Component:</strong>
+  <%= @blank_section.component_id %>
+</p>
+<p>
+  <strong>Xpos:</strong>
+  <%= @blank_section.xpos %>
+</p>
+<p>
+  <strong>Ypos:</strong>
+  <%= @blank_section.ypos %>
+</p>
+<p>
+  <strong>Width:</strong>
+  <%= @blank_section.width %>
+</p>
+<p>
+  <strong>Height:</strong>
+  <%= @blank_section.height %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_blank_section_path(@blank_section) %> |
+  <%= link_to "Destroy", @blank_section, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", blank_sections_path %>
+</p>

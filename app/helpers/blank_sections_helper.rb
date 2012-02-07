@@ -1,0 +1,2 @@
+module BlankSectionsHelper
+end

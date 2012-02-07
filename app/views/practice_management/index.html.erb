@@ -1,0 +1,5 @@
+<h2>Please Select the document you want to practice</h2>
+<% @documents.each do |document| %>
+    <%= link_to document.name,practice_document_path(:document_id=>document.id) %>
+
+<% end %>

@@ -1,0 +1,47 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "/assets/exclusions/jquery_data_table" %>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $('#example').dataTable({
+                "bJQueryUI": true,
+                "sPaginationType": "full_numbers"
+            });
+
+
+        })
+    </script>
+<% end %>
+
+<%= content_for :page_header do %>
+    <div class="pull-left" style="border: none;"><%= image_tag('logo.png') %></div>
+<% end %>
+
+
+<table>
+  <%= form_tag :action => 'confirm_documents' %>
+
+  <% @docket_documents.each_with_index do |document, index| %>
+      <%= fields_for "docket_documents[#{index}]", document do |f| %>
+          <%= f.hidden_field :docket_id, :value=>@docket.id %>
+          <tr>
+            <td> <%= f.check_box :document_id,{:checked=>false}, @documents[index].id,0 %>
+              <%= @documents[index].name %></td>
+
+            <% if index%3==0 %>
+                </tr>
+            <% end %>
+
+
+      <% end %>
+      <tr>
+
+  <% end %>
+
+
+  <tr>
+
+  </tr>
+</table>
+<%= submit_tag %>

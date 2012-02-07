@@ -1,0 +1,69 @@
+<%= content_for :head do %>
+
+
+    <style type="text/css">
+        .content {
+            background: transparent;
+        }
+
+        .page-header {
+            background: transparent;
+            position: fixed;
+            left: 25px;
+            border: none;
+        }
+
+        .docuframe {
+            width: 800px;
+            height: 1080px;
+            margin: 0px auto;
+            padding: 0px;
+            background-image: url("<%= @document.blank_form.url %>");
+            background-repeat: no-repeat;
+        }
+
+        .component_icon {
+            cursor: pointer;
+        }
+
+        .selected_icon {
+            margin-left: 30px;
+        }
+
+        .selectiondiv {
+            position: absolute;
+            zIndex: 5000;
+        }
+    </style>
+
+<% end %>
+
+
+
+<div class="row" style="text-align: center; background: transparent">
+  <div id="DocumentFrame" class="docuframe">
+  </div>
+
+  <% @test_doc_infos.each do |test_doc_info| %>
+
+      <% blank_section=BlankSection.find(test_doc_info.blank_section_id) %>
+
+      <%if TestResult.find_by_user_id_and_team_id_and_test_doc_info_id(current_user.id, @team.id, test_doc_info.id).answer_key==Example.find(test_doc_info.example_id).correct %>
+      <% @class="success" %>
+          <% else %>
+      <% @class="error" %>
+          <% end %>
+      <%= image_tag Example.find(test_doc_info.example_id).content.url, :id=>test_doc_info.id,:class=>"#{@class} btn option_image", :style => "
+          position :absolute;
+          z-index:5000;
+          top :#{blank_section.ypos  }px;
+          left: #{blank_section.xpos}px;
+          width: #{blank_section.width} px;
+          height:#{blank_section.height }px;
+
+          "
+      %>
+
+  <% end %>
+</div>
+

@@ -1,0 +1,29 @@
+@import "bootstrap";
+
+
+    tr.odd {
+        background-color: #e3f5ac;
+    }
+
+    tr.odd td.sorting_1 {
+        background-color: #d7e99f;
+    }
+
+    tr.even {
+        background-color: #ffffff;
+    }
+
+    tr.even td.sorting_1 {
+        background-color: #f2f2f2;
+    }
+
+    td.options {
+        width: 100px;
+        background: olive;
+    }
+
+    td.options a {
+        color: white;
+    }
+
+

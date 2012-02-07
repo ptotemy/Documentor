@@ -1,0 +1,16 @@
+<span style="color:white"><%  "Example" %></span>
+
+<p>
+  <strong>Name:</strong>
+  <%= @example.name %>
+</p>
+<p>
+  <strong>Content File Name:</strong>
+  <%= @example.content_file_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_example_path(@example) %> |
+  <%= link_to "Destroy", @example, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", examples_path %>
+</p>

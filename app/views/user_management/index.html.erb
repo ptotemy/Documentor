@@ -1,0 +1,217 @@
+<script type="text/javascript">
+
+    function get_available_users(team_id) {
+        $.get("get_available_users/" + team_id, function(data) {
+            $(".user-list").html(data);
+
+        });
+    }
+
+    function get_team_users(team_id) {
+        $.get("get_team_users/" + team_id, function(data) {
+            $(".team-list").html(data);
+
+        });
+
+    }
+
+    function remove_team_user(team_id, user_id) {
+        $.get("remove_team_user/" + team_id + "/" + user_id, function() {
+            alert("Successfully removed user!")
+        });
+    }
+
+
+    $(function() {
+        $(".team_assign").click(function(){
+
+            $(".assignment_team_id").attr("value",$("select option:selected").attr("value"))
+        }) ;
+
+        $(".team_id").attr("value", $("select option:selected").attr("value"));
+
+        get_available_users($("select option:selected").attr("value"));
+        get_team_users($("select option:selected").attr("value"));
+
+        $(".list").change(function() {
+
+            $(".team_id").attr("value", $("select option:selected").attr("value"));
+            get_available_users($("select option:selected").attr("value"));
+            get_team_users($("select option:selected").attr("value"));
+
+
+        });
+
+        $(".remove_icon").live('click', function() {
+
+            remove_team_user($("select option:selected").attr("value"), $(this).attr("id"));
+            get_available_users($("select option:selected").attr("value"));
+            get_team_users($("select option:selected").attr("value"));
+
+        });
+    });
+</script>
+
+<div class="row">
+  <div class="span2">
+    <table>
+      <tr style="border: none;">
+
+        <td style="border: none;">
+          <a href="#" data-controls-modal="new_upload_form"> <%= image_tag("upload.jpeg", :size => "64x64") %></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="new_team_form"><%= image_tag("team.jpeg", :size => "64x64") %></a>
+        </td>
+      </tr>
+      <tr>
+
+        <td>
+          <a href="#" data-controls-modal="test_assignment_form" class="team_assign"> <%= image_tag("team.jpeg", :size => "64x64")  %>wip</a>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+
+  <div class="span5">
+    <%= form_tag :action => "add_users" do %>
+        <div class="user-list">
+
+
+        </div>
+        <%= hidden_field_tag :team_id, 0, :class=>"team_id" %>
+        </div>
+        <div class="span2" style="margin-top: 200px">
+          <%= submit_tag ">>", :class=>"primary btn" %>
+        </div>
+    <% end %>
+
+    <div class="span4">
+      <%= select_tag :team, options_from_collection_for_select(@department.teams, "id", "name"), :class=>"list" %>
+      <br>
+      <br>
+      <br>
+
+      <div class="team-list">
+
+
+      </div>
+    </div>
+
+    </div>
+<!--create a new team form-->
+
+
+<div id="new_team_form" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close"> &times; </a>
+
+    <h3>New Team</h3>
+  </div>
+
+  <%= form_for(Team.new) do |f| %>
+
+      <div class="modal-body">
+
+        <div class="clearfix">
+          <%= f.label :name %>
+          <div class="input">  <%= f.text_field :name %></div>
+          <%= f.hidden_field :department_id, :value=>@department.id %>
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <div>
+          <%= f.submit "Create Team", :class=>"btn error" %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+<!--end of team form-->
+
+
+
+
+<!--create a new upload form-->
+<div id="new_upload_form" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close"> &times; </a>
+
+    <h3>New Upload</h3>
+  </div>
+
+  <%= form_for(Upload.new) do |f| %>
+
+      <div class="modal-body">
+
+        <div class="clearfix">
+          <%= f.label :xls %>
+          <div class="input">  <%= f.file_field :xls %></div>
+          <%= f.hidden_field :department_id, :value=>@department.id %>
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <div>
+          <%= f.submit "Create Upload", :class=>"btn error" %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+
+
+<!--end of upload form-->
+
+
+<!--start of assignment form-->
+
+<div id="test_assignment_form" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close"> &times; </a>
+
+    <h3>New Upload</h3>
+  </div>
+
+  <%= form_for(TeamsTest.new) do |f| %>
+
+      <div class="modal-body">
+
+        <div class="clearfix">
+          <%= f.label :test_id %>
+          <div class="input">  <%= f.select :test_id, Test.all.collect { |test| [test.name, test.id] } %></div>
+          <%= f.hidden_field :team_id, :value=>0,:class=>"assignment_team_id" %>
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <div>
+          <%= f.submit "Done", :class=>"btn error" %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+
+
+
+<!--end of assignment form-->
+
+
+

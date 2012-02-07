@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  test_doc_id: 1
+  blank_section_id: 1
+  example_id: 1
+
+two:
+  test_doc_id: 1
+  blank_section_id: 1
+  example_id: 1

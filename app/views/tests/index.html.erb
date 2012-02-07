@@ -1,0 +1,20 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Tests" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for test in @tests %>
+    <tr>
+      <td><%= test.name %></td>
+      <td><%= link_to "Show", test %></td>
+      <td><%= link_to "Edit", edit_test_path(test) %></td>
+      <td><%= link_to "Destroy", test, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Test", new_test_path %></p>

@@ -1,0 +1,43 @@
+<%= form_for @example do |f| %>
+
+
+    <% if @example.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@example.errors.count, "error") %> prohibited this examplefrom being saved:</h2>
+
+          <ul>
+            <% @example.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+    <table class="condensed-table">
+      <tr>
+        <td><%= f.label :name %></td>
+
+        <td><%= f.text_field :name %></td>
+
+      </tr>
+
+      <tr>
+        <td><%= f.label :content %></td>
+
+        <td><%= f.file_field :content %></td>
+
+      </tr>
+        <%= f.hidden_field:component_id ,:value=>@component.id%>
+
+
+
+
+    </table>
+    <br>
+    <br>
+
+    <%= f.submit "Submit", :style=>"margin:auto", :class=>"btn primary large" %>
+
+<% end %>

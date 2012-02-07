@@ -1,0 +1,182 @@
+<%= content_for :head do %>
+<%= stylesheet_link_tag "/assets/exclusions/jquery_data_table" %>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#example').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+        });
+
+
+    })
+</script>
+<% end %>
+
+<%= content_for :page_header do %>
+<div class="pull-left" style="border: none;"><%= image_tag('logo.png') %></div>
+<% end %>
+
+<div class="row">
+
+  <div class="span4" style="text-align: center">
+    <div class="pageslide_header">
+      <h1>"Documents"</h1>
+    </div>
+    <br/>
+    <br/>
+    <table>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+            <%= image_tag('new.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+            <h2>Create New</h2>
+          </a>
+
+          <div id="new_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Create new record</h3>
+            </div>
+            <div class ="modal-body">
+              <%= render 'form' %>
+            </div>
+		</div>
+
+
+            <div id="edit_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Edit a record</h3>
+            </div>
+            <div class="modal-body">
+
+              </div>
+          </div>
+
+            
+            <br>
+            <br>
+
+
+            
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+            <%= image_tag('upload.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+            <h2>Upload</h2>
+          </a>
+
+          <div id="upload_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Upload Excel File</h3>
+            </div>
+            <%= form_tag('/document/parse_save_from_excel', :multipart => true) do |f| %>
+            <div class="modal-body">
+              Select an Excel File :
+              <%= file_field_tag :excel_file %>
+            </div>
+
+            <div class="modal-footer">
+              <%= submit_tag 'Submit', :class=>"large btn primary pull-left" %>
+            </div>
+            <% end -%>
+
+          </div>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%=new_document_path %>" class="add_new span3">
+            <%= image_tag('download.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href=" <%=new_document_path %>" class="add_new span3">
+            <h2>Download</h2>
+          </a>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+  <div class="span12">
+    <table class="jqueried_table display" cellpadding="0" cellspacing="0" border="0" id="example">
+      <thead>
+      <tr>
+            <th>Name</th>
+            <th>Blank Form File Name</th>
+         <th>Manage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @documents.each do |document| %>
+      <tr>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= document
+                .name %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= document
+                .blank_form.url %></a>
+            </td>
+
+
+        <td class="options">
+     <a href="#" id="<%= document.id %> "class="edit_link" >Edit</a>| 
+          <%= link_to "Destroy", document, :confirm => 'Are you sure?', :method => :delete %>|
+          <%= link_to "customize",document_customize_view_path(:document_id=>document.id) %>
+        </td>
+      </tr>
+
+
+      <div id="show_details" class="modal hide fade">
+        <div class="modal-header">
+          <a href="#" class="close"> &times; </a>
+
+          <h3><%= "Document" %></h3>
+        </div>
+        <div class="modal-body">
+              <p>
+                <strong>Name:</strong>
+                <%= document.name %>
+              </p>
+
+              <p>
+                <strong>Blank Form File Name:</strong>
+                <%= image_tag document.blank_form.url %>
+              </p>
+
+        </div>
+
+        <div class="modal-footer">
+          <a href="#" class="close"> Back </a>
+        </div>
+      </div>
+      <%- end -%>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+<br/>

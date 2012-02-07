@@ -1,0 +1,14 @@
+<table>
+  <tr style="border: none;">
+
+    <% @departments.each do |dept| %>
+        <td>
+
+          <%= link_to "Manage #{dept.name}", user_management_path(:dept_id=>dept.id) %>
+        </td>
+
+
+    <% end %>
+
+  </tr>
+</table>

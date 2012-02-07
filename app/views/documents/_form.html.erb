@@ -1,0 +1,39 @@
+<%= form_for @document do |f| %>
+
+
+<% if @document.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@document.errors.count, "error") %> prohibited this documentfrom being saved:</h2>
+
+          <ul>
+            <% @document.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+<table class="condensed-table">
+      <tr>
+        <td><%= f.label :name %></td>
+
+        <td><%= f.text_field :name %></td>
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :blank_form %></td>
+
+        <td><%= f.file_field :blank_form %></td>
+            
+      </tr>
+
+</table>
+<br>
+<br>
+
+<%= f.submit "Submit" ,:style=>"margin:auto",:class=>"btn primary large"%>
+
+<% end %>

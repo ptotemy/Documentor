@@ -1,0 +1,69 @@
+<%= form_for @blank_section do |f| %>
+
+
+<% if @blank_section.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@blank_section.errors.count, "error") %> prohibited this blank_sectionfrom being saved:</h2>
+
+          <ul>
+            <% @blank_section.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+<table class="condensed-table">
+      <tr>
+        <td><%= f.label :document_id %></td>
+
+        <td><%= f.select :document_id,Document.all.collect{|var|[var.name,var.id]} %></td>
+
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :component_id %></td>
+
+        <td><%= f.select :component_id,Component.all.collect{|var|[var.name,var.id]} %></td>
+
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :xpos %></td>
+
+        <td><%= f.number_field :xpos %></td>
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :ypos %></td>
+
+        <td><%= f.number_field :ypos %></td>
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :width %></td>
+
+        <td><%= f.number_field :width %></td>
+            
+      </tr>
+
+      <tr>
+        <td><%= f.label :height %></td>
+
+        <td><%= f.number_field :height %></td>
+            
+      </tr>
+
+</table>
+<br>
+<br>
+
+<%= f.submit "Submit" ,:style=>"margin:auto",:class=>"btn primary large"%>
+
+<% end %>

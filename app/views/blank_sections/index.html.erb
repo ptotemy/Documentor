@@ -1,0 +1,30 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Blank Sections" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Document</th>
+    <th>Component</th>
+    <th>Xpos</th>
+    <th>Ypos</th>
+    <th>Width</th>
+    <th>Height</th>
+  </tr>
+  <% for blank_section in @blank_sections %>
+    <tr>
+      <td><%= blank_section.document_id %></td>
+      <td><%= blank_section.component_id %></td>
+      <td><%= blank_section.xpos %></td>
+      <td><%= blank_section.ypos %></td>
+      <td><%= blank_section.width %></td>
+      <td><%= blank_section.height %></td>
+      <td><%= link_to "Show", blank_section %></td>
+      <td><%= link_to "Edit", edit_blank_section_path(blank_section) %></td>
+      <td><%= link_to "Destroy", blank_section, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Blank Section", new_blank_section_path %></p>

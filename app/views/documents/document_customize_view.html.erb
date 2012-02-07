@@ -1,0 +1,163 @@
+<%= content_for :head do %>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            var component_name = "";
+            $('#component_field').attr("value", "empty");
+
+            // Select a Component
+            $('.component_icon').click(function() {
+                $('.component_icon').removeClass('selected_icon');
+                $('.component_icon a').removeClass('error').addClass('primary');
+                $(this).addClass('selected_icon');
+                $(this).children('a').removeClass('primary').addClass('error');
+                $('#component_field').attr("value", $(this).attr('id'));
+                component_name = $(this).attr("title");
+            });
+
+            $('.selectiondiv').draggable();
+            $('.selectiondiv').resizable();
+
+            var selection_no = 0;
+
+            $("#DocumentFrame").click(function(e) {
+//                if (e.target.hasClass('xbutton')) {
+//                    $(".xbutton").trigger('click');
+//                }
+//                alert($('#component_field').attr("value"));
+//
+                if ($('#component_field').attr("value") != "empty") {
+                    var LEFT = e.pageX
+                    var TOP = e.pageY
+                    var this_selection = "#selection" + selection_no;
+
+                    $('#DocumentFrame').after('<div id="selection' + selection_no + '" class="selectiondiv ui-widget-content">  </div>');
+
+                    $(this_selection).append(" <div class='ui-widget-header' title='" + $('#component_field').attr("value") + "' style='margin: 3px;'>" + component_name + "<a href='#' onclick='$(this).parent().parent().remove();' class='pull-right' style='font-size: 12px;color:white;margin-right: 3px;'>x</a>" + "</div> ");
+
+                    // Use CSS to place your selection div
+                    $("#selection" + selection_no).css({
+                        position: 'absolute',
+                        zIndex: 5000,
+                        left: LEFT,
+                        top: TOP,
+                        width: 100,
+                        height: 40
+                    });
+
+                    $(this_selection).show();
+                    $(this_selection).draggable();
+                    $(this_selection).resizable();
+                    selection_no += 1;
+                } else {
+                    alert("Please pick a component type first!");
+                }
+
+            });
+
+            $('#save_button').click(function() {
+                var data = {fields:[]};
+                var count = $('.selectiondiv').length;
+
+                $('.selectiondiv').each(function() {
+                    data["fields"].push({
+                        comp_id:$(this).find('div.ui-widget-header').attr("title"),
+                        width:$(this).width(),
+                        height:$(this).height(),
+                        xpos:$(this).position().left,
+                        ypos:$(this).position().top})
+                });
+                $.ajax({
+                    url: '/documents/structure_form/<%= @document.id %>/'+count,
+                    type: "post",
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function(data) {
+
+                    }
+                });
+            });
+
+        });
+
+
+    </script>
+    <style type="text/css">
+        .content {
+            background: transparent;
+        }
+
+        .page-header {
+            background: transparent;
+            position: fixed;
+            left: 25px;
+            border: none;
+        }
+
+        .docuframe {
+            width: 800px;
+            height: 1080px;
+            margin: 0px auto;
+            padding: 0px;
+            background-image: url("<%= @document.blank_form.url %>");
+            background-repeat: no-repeat;
+        }
+
+        .component_icon {
+            cursor: pointer;
+        }
+
+        .selected_icon {
+            margin-left: 30px;
+        }
+
+        .selectiondiv {
+            position: absolute;
+            zIndex: 5000;
+        }
+    </style>
+
+<% end %>
+
+<div class="page-header" style="position:fixed; color:white;font-weight: bold;margin-top: 20px">
+  <%= link_to image_tag('save.png', :size=>'40x40'), "#", :class=>"primary btn", :id=>'save_button' %>
+  <br/>
+  <br/>
+
+  <% @components.each do |component| %>
+      <div id="<%= component.id %>" title="<%= component.name %>" class="component_icon" style="margin-bottom: 5px;">
+        <%= link_to component.name, "#", :class=>'span2 primary btn' %>
+      </div>
+  <% end %>
+  <br/>
+</div>
+
+<div class="row" style="text-align: center; background: transparent">
+  <div id="DocumentFrame" class="docuframe">
+  </div>
+
+  <% @blank_sections.each do |blank_section| %>
+      <div id="<%= blank_section.id %>"
+           class="selectiondiv"
+           style=
+                   "       position:absolute;
+                           z-index:5000;
+                           top:<%= blank_section.ypos %>px;
+                           left:<%= blank_section.xpos %>px;
+                           width:<%= blank_section.width %>px;
+                           height:<%= blank_section.height %>px;
+                   ">
+
+        <div class='ui-widget-header' title='<%= blank_section.component_id %>' style='margin: 3px;'>
+          <%= blank_section.component.name %>
+          <a href='#' onclick='$(this).parent().parent().remove();' class='pull-right' style='font-size: 12px;color:white;margin-right: 3px;'>x</a>
+        </div>
+      </div>
+
+  <% end %>
+  <%= hidden_field_tag :component_id, "", :id=>"component_field" %>
+
+</div>
+

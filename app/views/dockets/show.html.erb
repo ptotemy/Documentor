@@ -1,0 +1,12 @@
+<span style="color:white"><%  "Docket" %></span>
+
+<p>
+  <strong>Name:</strong>
+  <%= @docket.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_docket_path(@docket) %> |
+  <%= link_to "Destroy", @docket, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", dockets_path %>
+</p>

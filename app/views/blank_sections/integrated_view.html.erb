@@ -1,0 +1,221 @@
+<%= content_for :head do %>
+<%= stylesheet_link_tag "/assets/exclusions/jquery_data_table" %>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#example').dataTable({
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+        });
+
+
+    })
+</script>
+<% end %>
+
+<%= content_for :page_header do %>
+<div class="pull-left" style="border: none;"><%= image_tag('logo.png') %></div>
+<% end %>
+
+<div class="row">
+
+  <div class="span4" style="text-align: center">
+    <div class="pageslide_header">
+      <h1>"Blank Sections"</h1>
+    </div>
+    <br/>
+    <br/>
+    <table>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+            <%= image_tag('new.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+            <h2>Create New</h2>
+          </a>
+
+          <div id="new_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Create new record</h3>
+            </div>
+            <div class ="modal-body">
+              <%= render 'form' %>
+            </div>
+		</div>
+
+
+            <div id="edit_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Edit a record</h3>
+            </div>
+            <div class="modal-body">
+
+              </div>
+          </div>
+
+            
+            <br>
+            <br>
+
+
+            
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+            <%= image_tag('upload.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+            <h2>Upload</h2>
+          </a>
+
+          <div id="upload_form" class="modal hide fade">
+            <div class="modal-header">
+              <a href="#" class="close"> &times; </a>
+
+              <h3>Upload Excel File</h3>
+            </div>
+            <%= form_tag('/blank_section/parse_save_from_excel', :multipart => true) do |f| %>
+            <div class="modal-body">
+              Select an Excel File :
+              <%= file_field_tag :excel_file %>
+            </div>
+
+            <div class="modal-footer">
+              <%= submit_tag 'Submit', :class=>"large btn primary pull-left" %>
+            </div>
+            <% end -%>
+
+          </div>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="<%=new_blank_section_path %>" class="add_new span3">
+            <%= image_tag('download.png', :size=>"32x32") %>
+          </a>
+        </td>
+        <td>
+          <a href=" <%=new_blank_section_path %>" class="add_new span3">
+            <h2>Download</h2>
+          </a>
+        </td>
+      </tr>
+
+    </table>
+
+  </div>
+
+  <div class="span12">
+    <table class="jqueried_table display" cellpadding="0" cellspacing="0" border="0" id="example">
+      <thead>
+      <tr>
+            <th>Document</th>
+            <th>Component</th>
+            <th>Xpos</th>
+            <th>Ypos</th>
+            <th>Width</th>
+            <th>Height</th>
+         <th>Manage</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @blank_sections.each do |blank_section| %>
+      <tr>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= blank_section
+                .document_id %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= blank_section
+                .component_id %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= blank_section
+                .xpos %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= blank_section
+                .ypos %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= blank_section
+                .width %></a>
+            </td>
+            <td style="border-right: 1px solid #d3d3d3">
+              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= blank_section
+                .height %></a>
+            </td>
+
+
+        <td class="options">
+     <a href="#" id="<%= blank_section.id %> "class="edit_link" >Edit</a>| 
+          <%= link_to "Destroy", blank_section, :confirm => 'Are you sure?', :method => :delete %>
+        </td>
+      </tr>
+
+
+      <div id="show_details" class="modal hide fade">
+        <div class="modal-header">
+          <a href="#" class="close"> &times; </a>
+
+          <h3><%= "Blank Section" %></h3>
+        </div>
+        <div class="modal-body">
+              <p>
+                <strong>Document:</strong>
+                <%= blank_section.document_id %>
+              </p>
+
+              <p>
+                <strong>Component:</strong>
+                <%= blank_section.component_id %>
+              </p>
+
+              <p>
+                <strong>Xpos:</strong>
+                <%= blank_section.xpos %>
+              </p>
+
+              <p>
+                <strong>Ypos:</strong>
+                <%= blank_section.ypos %>
+              </p>
+
+              <p>
+                <strong>Width:</strong>
+                <%= blank_section.width %>
+              </p>
+
+              <p>
+                <strong>Height:</strong>
+                <%= blank_section.height %>
+              </p>
+
+        </div>
+
+        <div class="modal-footer">
+          <a href="#" class="close"> Back </a>
+        </div>
+      </div>
+      <%- end -%>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+<br/>
