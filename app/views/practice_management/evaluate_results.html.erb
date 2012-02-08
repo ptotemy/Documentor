@@ -1,31 +1,6 @@
 <%= content_for :head do %>
 
-    <script type="text/javascript">
 
-        $(function() {
-            $(".option_image").click(function(event) {
-
-                //if the image is marked correct..mark it incorrect
-                if ($(this).attr("class").search("success") != -1) {
-                    $(this).addClass("error");
-                    $(this).removeClass("success");
-                    $("." + $(this).attr("id")).attr("value", 1);
-
-                }
-
-                //if the image is incorrect...mark is correct
-                else {
-                    $(this).addClass("success");
-                    $(this).removeClass("error");
-                    $("." + $(this).attr("id")).attr("value", 0);
-                }
-
-
-            });
-
-        });
-
-    </script>
 
     <style type="text/css">
         .content {
@@ -76,13 +51,24 @@
 
       <% example=Example.find(practice_example[0]) %>
       <% blank_section=BlankSection.find(practice_example[1]) %>
-      <% if params[example.id.to_s]==example.correct  %>
-          <% @class="success" %>
-          <% else %>
-          <% @class="error" %>
-          <% end %>
+      <% if params[example.id.to_s]==example.correct %>
+          <% @class="right" %>
+      <% else %>
+          <% @class="wrong" %>
+      <% end %>
 
-      <%= image_tag example.content.url, :id=>blank_section.id, :class=>"#{@class} btn option_image", :style => "
+      <%= image_tag "#{@class}.jpeg", :size=>"20x20", :style=>"
+       position :absolute;
+          z-index:5000;
+    top :#{blank_section.ypos-30 }px;
+          left: #{blank_section.xpos }px;
+          width: #{blank_section.width} px;
+          height:#{blank_section.height }px;
+
+      " %>
+
+
+      <%= image_tag example.content.url, :id=>blank_section.id, :class=>"primary btn option_image", :style => "
           position :absolute;
           z-index:5000;
           top :#{blank_section.ypos  }px;
@@ -98,7 +84,7 @@
 
 
 <div style="position:fixed; color:white;font-weight: bold;margin-top: 20px;top:50px;left:30px;height: 50px">
-  <%= link_to image_tag('submit_button.jpeg', :size=>'50x40', :class=>"primary btn", :id=>"save_button"),practice_document_path(:document_id=>@document.id) %>
+  <%= link_to image_tag('submit_button.jpeg', :size=>'50x40', :class=>"primary btn", :id=>"save_button"), practice_document_path(:document_id=>@document.id) %>
   <br/>
   <br/>
 </div>

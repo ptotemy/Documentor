@@ -25,7 +25,7 @@
 
         <% if !user_signed_in? %>
             <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "pull-right"}) do |f| %>
-                <%= f.text_field :email, :class=>"input-small", :placeholder=>"Username" %>
+                <%= f.email_field :email, :class=>"input-small", :placeholder=>"Email" %>
                 <%= f.password_field :password, :class=>"input-small", :placeholder=>"Password" %>
                 <%= f.submit "Sign In", :class=>"primary btn" %>
             <% end %>
