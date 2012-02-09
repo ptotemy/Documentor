@@ -4,8 +4,6 @@ class TestDoc < ActiveRecord::Base
   has_many :test_doc_infos
   def generate_info
 
-
-
     @document=Document.find(self.document_id)
     @document.blank_sections.each do |blank_section|
       @test_doc_info=TestDocInfo.new

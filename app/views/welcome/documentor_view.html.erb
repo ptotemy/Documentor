@@ -67,36 +67,40 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
 
   <div class="span4">
     <table>
-      <tr style="border: none;">
+      <tr style="border: none">
         <td style="border: none;">
           <%= image_tag("docket.jpeg", :size => "64x64") %>
         </td>
-        <td style="border: none;">
-         Manage your Dockets
+        <td style="border: none;text-align: center;">
+          <br>
+         <%= link_to "My Dockets",docket_integrated_view_path ,:class => "primary btn span5" ,:style => "text-align:centre"%>
         </td>
       </tr>
       <tr>
         <td>
           <%= image_tag("documents.jpeg", :size => "64x64") %>
         </td>
-        <td>
-        <%= link_to  "Manage your Documents",document_integrated_view_path,:class => "primary btn" %>
+        <td style="text-align: center;">
+          <br>
+        <%= link_to  "My Documents",document_integrated_view_path,:class => "primary btn span5" %>
         </td>
       </tr>
       <tr>
         <td>
           <%= image_tag("test.jpeg", :size => "70x70") %>
         </td>
-        <td>
-        <%= link_to "Manage Tests" ,test_integrated_view_path,:class => "primary btn"%>
+        <td style="text-align: center;">
+          <br>
+        <%= link_to "My Tests" ,test_integrated_view_path,:class => "primary btn span5"%>
         </td>
       </tr>
       <tr>
         <td>
           <%= image_tag("dept.jpeg", :size => "70x70") %>
         </td>
-        <td>
-         <%= link_to "My Departments",department_management_path,:class=>"primary btn" %>
+        <td style="text-align: center;">
+          <br>
+         <%= link_to "My Departments",department_management_path,:class=>"primary btn span5" %>
         </td>
       </tr>
     </table>

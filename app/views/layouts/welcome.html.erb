@@ -13,10 +13,12 @@
   <div class="topbar" style="z-index: 999999999">
     <div class="fill">
       <div class="container">
+        <% if current_user %>
          <% if current_user.admin? %>
             <% @path="admin" %>
             <% else %>
             <% @path="documentor" %>
+            <% end %>
             <% end %>
 
         <a class="brand" href="<%= @path %>">DocuMentor</a>

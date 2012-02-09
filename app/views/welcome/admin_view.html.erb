@@ -4,7 +4,7 @@
 <% end %>
 <div class="row">
   <div class="span10">
-    <h1>Your DashBoard</h1>
+    <h1>My DashBoard</h1>
 
     <div class="row">
       <div class="span6">
@@ -71,7 +71,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
           <%= image_tag("docket.jpeg", :size => "64x64") %>
         </td>
         <td style="border: none;">
-         Manage your Dockets
+         <%= link_to "Manage Components",component_integrated_view_path,:class=>"primary btn span5" %>
         </td>
       </tr>
       <tr>
@@ -79,7 +79,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
           <%= image_tag("documents.jpeg", :size => "64x64") %>
         </td>
         <td>
-        <%= link_to  "Manage your Documents",document_integrated_view_path,:class => "primary btn" %>
+        <%= link_to  "Manage your Documents",document_integrated_view_path,:class => "primary btn span5" %>
         </td>
       </tr>
       <tr>
@@ -87,7 +87,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
           <%= image_tag("test.jpeg", :size => "70x70") %>
         </td>
         <td>
-        <%= link_to "Manage Tests" ,test_integrated_view_path,:class => "primary btn"%>
+        <%= link_to "Manage Tests" ,test_integrated_view_path,:class => "primary btn span5"%>
         </td>
       </tr>
       <tr>
@@ -95,7 +95,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
           <%= image_tag("user.jpeg", :size => "70x70") %>
         </td>
         <td>
-         <%= link_to "Manage Users",user_management_path,:class=>"primary btn" %>
+         <%= link_to "Manage Users",user_management_path,:class=>"primary btn span5" %>
         </td>
       </tr>
 
@@ -104,7 +104,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
           <%= image_tag("dept.jpeg", :size => "70x70") %>
         </td>
         <td>
-         <%= link_to "Manage Departments",new_department_path,:class=>"primary btn" %>
+         <%= link_to "Manage Departments",new_department_path,:class=>"primary btn span5" %>
         </td>
       </tr>
 
