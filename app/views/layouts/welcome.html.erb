@@ -5,11 +5,7 @@
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <script type="text/javascript">
-      $(function() {
-          $('a.activate_pageslide').pageslide({direction:"left"});
-      });
-  </script>
+
   <%= yield(:head) %>
 </head>
 <body>
