@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+TestType.create!(:name=>"Docket")
+TestType.create!(:name=>"Document")
+
+User.create!(:email=>"admin@documentor.com", :password=>"documentor", :password_confirmation=>"documentor", :admin=>true, :documentor=>false)
+User.create!(:email=>"documentor@documentor.com", :password=>"documentor", :password_confirmation=>"documentor", :admin=>false, :documentor=>true)
+
