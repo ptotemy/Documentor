@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  test_id: 1
+  team_id: 1
+  user_id: 1
+  score: 1.5
+
+two:
+  test_id: 1
+  team_id: 1
+  user_id: 1
+  score: 1.5
