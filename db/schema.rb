@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210042353) do
+ActiveRecord::Schema.define(:version => 20120210103801) do
 
   create_table "blank_sections", :force => true do |t|
     t.integer  "document_id"
@@ -105,6 +105,15 @@ ActiveRecord::Schema.define(:version => 20120210042353) do
 
   create_table "temps", :force => true do |t|
     t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "test_checklist_data", :force => true do |t|
+    t.integer  "test_id"
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.float    "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

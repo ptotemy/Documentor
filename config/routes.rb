@@ -1,6 +1,6 @@
 MyDocumentor::Application.routes.draw do
   resources :document_sets
-match "document_sets_integrated_view"=>"document_sets#integrated_view"
+  match "document_sets_integrated_view"=>"document_sets#integrated_view"
 
   resources :teams_tests
 
@@ -50,6 +50,10 @@ match "document_sets_integrated_view"=>"document_sets#integrated_view"
   match 'generate_test_document'=>'tests#generate_test_document'
   match 'save_results'=>'test_management#save_results'
   match 'evaluate_results'=>'practice_management#evaluate_results'
+
+  match 'view_checklist'=>'test_management#view_checklist'
+  match 'set_checklist'=>'test_management#set_checklist'
+
 
   match 'documentor'=>'welcome#documentor_view'
   match 'admin'=>'welcome#admin_view'

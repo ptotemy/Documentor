@@ -4,8 +4,12 @@
 
     <% team.tests.each do |test| %>
         <%= test.name %>
-    <%= link_to  "(take Test)",take_test_path(:test_id=>test.id,:team_id=>team.id) %>
+        <% if test.test_type_id==1 %>
+            <%= link_to "(take Test)", view_checklist_path(:test_id=>test.id, :team_id=>team.id, :check=>true) %>
+        <% else %>
+            <% link_to "(take Test)", take_test_path(:test_id=>test.id, :team_id=>team.id, :check=>true) %>
         <% end %>
+    <% end %>
 
 
 <% end %>

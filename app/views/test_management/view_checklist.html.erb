@@ -1,0 +1,15 @@
+<%= form_tag :action => 'set_checklist' %>
+
+<%= hidden_field_tag :test_id,@test.id %>
+<%= hidden_field_tag :team_id,@team.id %>
+<%= hidden_field_tag :user_id,current_user.id %>
+
+<% @document_sets.each do |document_set| %>
+
+    <% document_set.documents.each do |document| %>
+        <%= check_box_tag document.id %>
+        <%= document.name %>
+        <br>
+    <% end %>
+<% end %>
+<%= submit_tag %>

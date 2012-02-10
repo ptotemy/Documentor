@@ -6,6 +6,44 @@ class TestManagementController < ApplicationController
 
   end
 
+  def view_checklist
+    @team=Team.find(params[:team_id])
+    @test=Test.find(params[:test_id])
+    @docket=Docket.find(@test.source_id)
+    @document_sets=@docket.document_sets
+
+  end
+
+  def set_checklist
+
+
+    @score=0
+    @total_pages=0
+    @team=Team.find(params[:team_id])
+    @test=Test.find(params[:test_id])
+    @docket=Docket.find(@test.source_id)
+    @document_sets=@docket.document_sets
+    @document_sets.each do |document_set|
+      @total_pages=@total_pages+document_set.documents.count
+      document_set.documents.each do |document|
+        if !params[document.id.to_s].nil?
+          @score=@score+1
+        end
+      end
+
+
+    end
+
+    @test_checklist_data=TestChecklistData.new
+    @test_checklist_data.test_id=@test.id
+    @test_checklist_data.team_id=@team.id
+    @test_checklist_data.user_id=current_user.id
+    @test_checklist_data.score=@score*100/@total_pages
+    @test_checklist_data.save!
+    redirect_to take_test_path(:test_id=>@test.id, :team_id=>@team.id)
+
+  end
+
   def take_test
     @team=Team.find(params[:team_id])
     @test=Test.find(params[:test_id])
