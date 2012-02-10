@@ -1,8 +1,9 @@
 class Document < ActiveRecord::Base
   set_table_name :documents
-  attr_accessible :name, :blank_form
+  attr_accessible :name, :blank_form ,:document_set_id
   has_attached_file :blank_form
-  has_many :blank_sections
+  has_many :blank_sections,:dependent => :destroy
+  belongs_to :document_set
 
   has_and_belongs_to_many :dockets
 

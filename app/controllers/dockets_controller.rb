@@ -93,18 +93,18 @@ class DocketsController < ApplicationController
 
   def add_documents
     @docket=Docket.find(params[:docket_id])
-    @documents=Document.all
-    @docket_documents=Array.new(@documents.count) { DocketDocuments.new }
+    @documents=DocumentSet.all
+    @docket_document_sets=Array.new(@documents.count) { DocumentSetsDockets.new }
 
   end
 
   def confirm_documents
 
-    @docket_documents = params[:docket_documents].values.collect { |doc| DocketDocuments.new(doc) }
+    @docket_documents = params[:docket_documents].values.collect { |doc| DocumentSetsDockets.new(doc) }
     @docket_documents.each do |dok_doc|
       dok_doc.save!
     end
-    redirect_to "add_documents/#{@docket_documents[0].docket_id}"
+    redirect_to root_path
 
   end
 end

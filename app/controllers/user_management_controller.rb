@@ -34,6 +34,7 @@ class UserManagementController < ApplicationController
 
   def get_available_users
 
+
     @team=Team.find(params[:team_id])
     @department=@team.department
 

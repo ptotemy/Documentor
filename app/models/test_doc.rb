@@ -2,6 +2,7 @@ class TestDoc < ActiveRecord::Base
   belongs_to :test
 
   has_many :test_doc_infos
+
   def generate_info
 
     @document=Document.find(self.document_id)

@@ -9,10 +9,10 @@
                 "sPaginationType": "full_numbers"
             });
 
-            $(".source").click(function(){
-                $(".docket_form_team_id").attr("value",$(this).attr("id"));
+            $(".source").click(function() {
+                $(".docket_form_team_id").attr("value", $(this).attr("id"));
 
-            }) ;
+            });
 
         })
     </script>
@@ -147,9 +147,11 @@
               <a href="#" id="<%= test.id %> " class="edit_link">Edit</a>|
               <%= link_to "Destroy", test, :confirm => 'Are you sure?', :method => :delete %> |
               <% if test.test_type_id==1 %>
-                   <a href="#" class="source" data-controls-modal="docket_form" data-backdrop="static" id="<%= test.id %>">Assign Docket</a>
+                  <a href="#" class="source" data-controls-modal="docket_form" data-backdrop="static" id="<%= test.id %>">Assign
+                    Docket</a>
               <% else %>
-                 <a href="#" class="source" data-controls-modal="document_form" data-backdrop="static" id="<%= test.id %>">Assign Docket</a>
+                  <a href="#" class="source" data-controls-modal="document_form" data-backdrop="static" id="<%= test.id %>">Assign
+                    Document Set</a>
               <% end %>
 
             </td>
@@ -194,21 +196,22 @@
 
 
 <div id="docket_form" class="modal hide fade">
-            <div class="modal-header">
-              <a href="#" class="close"> &times; </a>
+  <div class="modal-header">
+    <a href="#" class="close"> &times; </a>
 
-              <h3>Assign Docket</h3>
-            </div>
-            <div class="modal-body">
-              <%= form_tag :action=>'add_docket' %>
-              <%= hidden_field_tag :test_id,0,:class=>"docket_form_team_id" %>
-              <%= select_tag :source_id,options_from_collection_for_select(Docket.all,"id","name") %>
-            </div>
+    <h3>Assign Docket</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag :action=>'add_docket' do %>
+    <%= hidden_field_tag :test_id, 0, :class=>"docket_form_team_id" %>
+    <%= select_tag :source_id, options_from_collection_for_select(Docket.all, "id", "name") %>
+  </div>
 
-            <div class="modal-footer">
-             <%= submit_tag %>
-            </div>
-          </div>
+  <div class="modal-footer">
+    <%= submit_tag %>
+  </div>
+</div>
+        <% end %>
 
 <!--end of document form modal-->
 
@@ -218,20 +221,21 @@
 
 
 <div id="document_form" class="modal hide fade">
-            <div class="modal-header">
-              <a href="#" class="close"> &times; </a>
+  <div class="modal-header">
+    <a href="#" class="close"> &times; </a>
 
-              <h3>Assign Docket</h3>
-            </div>
-            <div class="modal-body">
-              <%= form_tag :action=>'add_docket' %>
-              <%= hidden_field_tag :test_id,0,:class=>"docket_form_team_id" %>
-              <%= select_tag :source_id,options_from_collection_for_select(Document.all,"id","name") %>
-            </div>
+    <h3>Assign Docket</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag :action=>'add_document' do %>
+        <%= hidden_field_tag :test_id, 0, :class=>"docket_form_team_id" %>
+        <%= select_tag :source_id, options_from_collection_for_select(DocumentSet.all, "id", "name") %>
+        </div>
 
-            <div class="modal-footer">
-             <%= submit_tag %>
-            </div>
-          </div>
+        <div class="modal-footer">
+          <%= submit_tag "OK", :class=>"primary btn" %>
+        </div>
+        </div>
+    <% end %>
 
-<!--end of document form modal-->
+    <!--end of document form modal-->

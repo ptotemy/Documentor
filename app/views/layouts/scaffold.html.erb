@@ -33,7 +33,14 @@
   <div class="topbar" style="z-index: 999999999">
     <div class="fill">
       <div class="container">
-        <a class="brand" href="/">BrandName</a>
+         <% if current_user %>
+        <% if current_user.admin? %>
+            <% @path=admin_path %>
+            <% else %>
+            <% @path=documentor_path %>
+            <% end %>
+            <% end %>
+        <a class="brand" href="<%= @path %>">DocuMentor</a>
         <ul class="nav">
           <!--<li><a href="#about" style="color:white;">About</a></li>-->
           <!--<li><a href="#contact" style="color:white;">Contact</a></li>-->

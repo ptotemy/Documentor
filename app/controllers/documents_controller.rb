@@ -19,8 +19,9 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(params[:document])
+    @document_set_id=@document.document_set_id
     if @document.save
-      redirect_to document_integrated_view_path, :notice => "Successfully created document."
+      redirect_to document_integrated_view_path(:document_set_id=>@document_set_id), :notice => "Successfully created document."
     else
       render :new
     end
@@ -35,17 +36,20 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
+    @document_set_id=@document.document_set_id
     if @document.update_attributes(params[:document])
-      redirect_to document_integrated_view_path, :notice => "Successfully updated document."
+      redirect_to document_integrated_view_path(:document_set_id=>@document_set_id), :notice => "Successfully updated document."
     else
       render :edit
     end
   end
 
   def destroy
+
     @document = Document.find(params[:id])
+    @document_set_id=@document.document_set_id
     @document.destroy
-    redirect_to document_integrated_view_path, :notice => "Successfully destroyed document."
+    redirect_to document_integrated_view_path(:document_set_id=>@document_set_id), :notice => "Successfully destroyed document."
   end
 
   def parse_save_from_excel
@@ -88,7 +92,8 @@ class DocumentsController < ApplicationController
   end
 
   def integrated_view
-    @documents = Document.all
+    @document_set=DocumentSet.find(params[:document_set_id])
+    @documents = @document_set.documents
     @document = Document.new
     render :layout=>'scaffold'
 

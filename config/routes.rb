@@ -1,4 +1,7 @@
 MyDocumentor::Application.routes.draw do
+  resources :document_sets
+match "document_sets_integrated_view"=>"document_sets#integrated_view"
+
   resources :teams_tests
 
   resources :team_tests
@@ -39,6 +42,8 @@ MyDocumentor::Application.routes.draw do
   match 'document_customize_view'=>'documents#document_customize_view'
   match '/documents/structure_form/:doc_id/:count'=> "documents#structure_form"
   match 'add_documents/:docket_id'=>'dockets#add_documents'
+
+
   match 'confirm_documents'=>'dockets#confirm_documents'
   match 'list_documents'=>'tests#list_of_documents'
   match 'generate_test_document'=>'tests#generate_test_document'

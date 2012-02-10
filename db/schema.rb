@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120207191250) do
+ActiveRecord::Schema.define(:version => 20120210042353) do
 
   create_table "blank_sections", :force => true do |t|
     t.integer  "document_id"
@@ -44,8 +44,22 @@ ActiveRecord::Schema.define(:version => 20120207191250) do
     t.datetime "updated_at"
   end
 
+  create_table "dockets_document_sets", :force => true do |t|
+    t.integer  "docket_id"
+    t.integer  "document_set_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "dockets_documents", :force => true do |t|
     t.integer  "docket_id"
+    t.integer  "document_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "document_sets", :force => true do |t|
+    t.string   "name"
     t.integer  "document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20120207191250) do
     t.string   "blank_form_file_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "document_set_id"
   end
 
   create_table "examples", :force => true do |t|

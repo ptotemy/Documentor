@@ -25,12 +25,12 @@
       <div class="container">
         <% if current_user %>
         <% if current_user.admin? %>
-            <% @path="admin" %>
+            <% @path=admin_path %>
             <% else %>
-            <% @path="documentor" %>
+            <% @path=documentor_path %>
             <% end %>
             <% end %>
-        <a class="brand" href="<%= @path %>">Documentor</a>
+        <a class="brand" href="<%= @path %>">DocuMentor</a>
         <ul class="nav">
           <!--<li><a href="#about" style="color:white;">About</a></li>-->
           <!--<li><a href="#contact" style="color:white;">Contact</a></li>-->
