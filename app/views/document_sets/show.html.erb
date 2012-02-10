@@ -1,0 +1,16 @@
+<span style="color:white"><%  "Document Set" %></span>
+
+<p>
+  <strong>Name:</strong>
+  <%= @document_set.name %>
+</p>
+<p>
+  <strong>Document:</strong>
+  <%= @document_set.document_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_document_set_path(@document_set) %> |
+  <%= link_to "Destroy", @document_set, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", document_sets_path %>
+</p>

@@ -1,0 +1,22 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Document Sets" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Document</th>
+  </tr>
+  <% for document_set in @document_sets %>
+    <tr>
+      <td><%= document_set.name %></td>
+      <td><%= document_set.document_id %></td>
+      <td><%= link_to "Show", document_set %></td>
+      <td><%= link_to "Edit", edit_document_set_path(document_set) %></td>
+      <td><%= link_to "Destroy", document_set, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Document Set", new_document_set_path %></p>
