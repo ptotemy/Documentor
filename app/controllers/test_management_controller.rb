@@ -15,10 +15,10 @@ class TestManagementController < ApplicationController
     else
       @current_doc_number=params[:current_doc_number]
     end
-    @test_doc=@test_docs[@current_doc_number]
+    @test_doc=@test_docs[@current_doc_number.to_i]
     @document=Document.find(@test_doc.document_id)
     @test_doc_infos=@test_doc.test_doc_infos
-    @next_page_number=@current_doc_number+1
+    @next_page_number=@current_doc_number.to_i+1
     @total_pages=@test_docs.count
 
 
