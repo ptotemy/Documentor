@@ -1,4 +1,12 @@
 class Component < ActiveRecord::Base
+
+   #-------------------------------------Description-------------------------------------------#
+    #This is a data structure which is used to capture a type of section in a document.
+    #The type of sections are predefined.
+    #Each blank form belongs to a component
+  #-------------------------------------***********-------------------------------------------#
+
+
   set_table_name :components
   attr_accessible :name, :component_icon
   has_attached_file :component_icon

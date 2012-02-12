@@ -1,4 +1,16 @@
 class Example < ActiveRecord::Base
+
+   #-------------------------------------Description-------------------------------------------#
+
+  #These are different examples of a component.
+  #when the document is prepared for tests, the component decided by the documentor is replaced by one of the
+  #many exmaples of that component.
+  #Example consists of an image, which we upload.
+
+
+
+  #-------------------------------------***********-------------------------------------------#
+
  set_table_name :examples
 attr_accessible :name, :content ,:component_id
   belongs_to :component

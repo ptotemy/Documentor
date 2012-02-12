@@ -1,4 +1,13 @@
 class TestDoc < ActiveRecord::Base
+
+   #-------------------------------------Description-------------------------------------------#
+
+  #This is the document which is used for tests.
+  #It contains a pointer to the document.
+  #This way we can reuse the document for different tests
+
+  #-------------------------------------***********-------------------------------------------#
+
   belongs_to :test
 
   has_many :test_doc_infos

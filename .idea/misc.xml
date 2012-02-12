@@ -52,7 +52,7 @@
       <general>
         <display-mode value="TABBED" />
         <navigation-history-size value="100" />
-        <show-object-details value="false" />
+        <show-object-details value="true" />
       </general>
       <filters>
         <object-type-filter>

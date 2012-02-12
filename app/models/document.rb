@@ -1,4 +1,15 @@
 class Document < ActiveRecord::Base
+
+   #-------------------------------------Description-------------------------------------------#
+
+  #This is a data structure which is used to capture a single page of a document.
+  #each document has many blank forms.
+  #Each document is an image which we need to upload
+
+
+  #-------------------------------------***********-------------------------------------------#
+  #TODO : Add Description
+
   set_table_name :documents
   attr_accessible :name, :blank_form ,:document_set_id
   has_attached_file :blank_form

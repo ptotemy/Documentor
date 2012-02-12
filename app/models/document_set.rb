@@ -1,4 +1,13 @@
 class DocumentSet < ActiveRecord::Base
+
+   #-------------------------------------Description-------------------------------------------#
+
+  #This is a data structure which is used to capture a collection of all document pages.
+  #each document set stores list of documents
+
+  #-------------------------------------***********-------------------------------------------#
+  #TODO: Add Description
+
  set_table_name :document_sets
 attr_accessible :name, :document_id
   has_many :documents,:dependent => :destroy

@@ -1,4 +1,16 @@
 class Test < ActiveRecord::Base
+
+
+
+   #-------------------------------------Description-------------------------------------------#
+
+  #This is a data structure used to store information about tests designed by the documentor.
+  #It has a test type and source
+
+
+  #-------------------------------------***********-------------------------------------------#
+
+
   set_table_name :tests
   attr_accessible :name, :docket_id, :test_type_id
   has_many :test_docs, :dependent => :destroy

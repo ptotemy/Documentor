@@ -1,5 +1,12 @@
 class Department < ActiveRecord::Base
 
+   #-------------------------------------Description-------------------------------------------#
+
+  #This is a data structure which is used to capture all departments in an organization.
+  #Each user belongs to a department and each department has many users and one in-charge
+
+  #-------------------------------------***********-------------------------------------------#
+
   has_many :users,:dependent => :destroy
   has_many :teams,:dependent => :destroy
 
