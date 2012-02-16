@@ -25,6 +25,7 @@ class TestDoc < ActiveRecord::Base
       #
       #example=Component.find(blank_section.component_id).examples.shuffle.first
       @test_doc_info.example_id=example.id
+      @test_doc_info.correct=true
       @test_doc_info.save!
 
     end

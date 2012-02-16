@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120216063742) do
+ActiveRecord::Schema.define(:version => 20120216073816) do
 
   create_table "blank_sections", :force => true do |t|
     t.integer  "document_id"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20120216063742) do
     t.integer  "example_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "correct"
   end
 
   create_table "test_docs", :force => true do |t|
