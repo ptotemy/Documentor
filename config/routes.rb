@@ -1,4 +1,10 @@
 MyDocumentor::Application.routes.draw do
+  resources :example_sets
+match "example_sets_integrated_view"=>"example_sets#integrated_view"
+
+  resources :sets
+match "sets_integrated_view"=>"sets#integrated_view"
+
   resources :document_sets
   match "document_sets_integrated_view"=>"document_sets#integrated_view"
 

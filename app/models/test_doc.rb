@@ -1,6 +1,6 @@
 class TestDoc < ActiveRecord::Base
 
-   #-------------------------------------Description-------------------------------------------#
+  #-------------------------------------Description-------------------------------------------#
 
   #This is the document which is used for tests.
   #It contains a pointer to the document.
@@ -19,7 +19,11 @@ class TestDoc < ActiveRecord::Base
       @test_doc_info=TestDocInfo.new
       @test_doc_info.test_doc_id=self.id
       @test_doc_info.blank_section_id=blank_section.id
-      example=Component.find(blank_section.component_id).examples.shuffle.first
+      set=ExampleSet.all.shuffle.first
+      examples=set.examples
+      example=examples.find_by_component_id(blank_section.component_id)
+      #
+      #example=Component.find(blank_section.component_id).examples.shuffle.first
       @test_doc_info.example_id=example.id
       @test_doc_info.save!
 

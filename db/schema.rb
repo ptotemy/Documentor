@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120210103801) do
+ActiveRecord::Schema.define(:version => 20120216063742) do
 
   create_table "blank_sections", :force => true do |t|
     t.integer  "document_id"
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(:version => 20120210103801) do
     t.integer  "document_set_id"
   end
 
+  create_table "example_sets", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "examples", :force => true do |t|
     t.string   "name"
     t.string   "content_file_name"
@@ -80,6 +86,13 @@ ActiveRecord::Schema.define(:version => 20120210103801) do
     t.datetime "updated_at"
     t.integer  "component_id"
     t.boolean  "correct"
+    t.integer  "example_set_id"
+  end
+
+  create_table "sets", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", :force => true do |t|
