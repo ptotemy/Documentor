@@ -1,0 +1,51 @@
+<%= form_for @example_set do |f| %>
+
+
+<% if @example_set.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@example_set.errors.count, "error") %> prohibited this example_setfrom being saved:</h2>
+
+          <ul>
+            <% @example_set.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+<table class="condensed-table">
+      <tr>
+        <td><%= f.label :name %></td>
+
+        <td><%= f.text_field :name %></td>
+            
+      </tr>
+  <tr>
+
+    <% i=0 %>
+    <%= f.fields_for :examples do |builder| %>
+
+    <tr>
+        <td><%= @components[i].name %></td>
+
+
+        <td><%= builder.hidden_field :component_id,:value=>@components[i].id %></td>
+
+        <td><%= builder.file_field :content %></td>
+      <%i=i+1 %>
+
+      </tr>
+
+
+	  <% end -%>
+
+
+</table>
+<br>
+<br>
+
+<%= f.submit "Submit" ,:style=>"margin:auto",:class=>"btn primary large"%>
+
+<% end %>

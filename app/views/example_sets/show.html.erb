@@ -1,0 +1,12 @@
+<span style="color:white"><%  "Example Set" %></span>
+
+<p>
+  <strong>Name:</strong>
+  <%= @example_set.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_example_set_path(@example_set) %> |
+  <%= link_to "Destroy", @example_set, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", example_sets_path %>
+</p>

@@ -1,0 +1,20 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Sets" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for set in @sets %>
+    <tr>
+      <td><%= set.name %></td>
+      <td><%= link_to "Show", set %></td>
+      <td><%= link_to "Edit", edit_set_path(set) %></td>
+      <td><%= link_to "Destroy", set, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Set", new_set_path %></p>

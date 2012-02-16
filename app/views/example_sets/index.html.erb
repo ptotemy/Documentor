@@ -1,0 +1,20 @@
+
+<%= content_for :page_header do %>
+<span style="color:white"><%  "Example Sets" %></span>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for example_set in @example_sets %>
+    <tr>
+      <td><%= example_set.name %></td>
+      <td><%= link_to "Show", example_set %></td>
+      <td><%= link_to "Edit", edit_example_set_path(example_set) %></td>
+      <td><%= link_to "Destroy", example_set, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Example Set", new_example_set_path %></p>
