@@ -36,7 +36,7 @@
         <br/>
         <% if !current_user %>
             <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
-              <a href="#" data-controls-modal="sign_up_form" data-backdrop="static" class="btn primary">Sign Up...</a>
+              <a href="#" data-target="#sign_up_form"  data-toggle="modal" class="btn primary">Sign Up...</a>
             </div>
         <% else %>
             <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
@@ -45,7 +45,7 @@
         <% end %>
         <div id="sign_up_form" class="modal hide fade">
           <div class="modal-header">
-            <a href="#" class="close"> &times; </a>
+          <a class="close" data-dismiss="modal">×</a>
 
             <h3>Sign Up</h3>
           </div>
