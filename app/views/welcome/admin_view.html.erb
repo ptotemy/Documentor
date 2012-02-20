@@ -3,7 +3,7 @@
 
 <% end %>
 <div class="row">
-  <div class="span10">
+  <div class="span7">
     <h1>My DashBoard</h1>
 
     <div class="row">
@@ -19,12 +19,10 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
         <br/>
         <% if !current_user %>
             <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
-              <a href="#" data-controls-modal="sign_up_form" data-backdrop="static" class="btn primary">Sign Up...</a>
+              <a href="#" data-target="#sign_up_form" data-toggle="modal" class="btn primary">Sign Up...</a>
             </div>
         <% else %>
-            <div style="text-align: right;color: #556b2f;font-size: 20px;font-weight: bold;margin-right: 20px;">
-              <%= link_to "Enter >>", "#", :class=>"btn primary" %>
-            </div>
+
         <% end %>
         <div id="sign_up_form" class="modal hide fade">
           <div class="modal-header">
@@ -71,52 +69,30 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
           <%= image_tag("docket.jpeg", :size => "64x64") %>
         </td>
         <td style="border: none;">
-         <%= link_to "Manage Components",component_integrated_view_path,:class=>"primary btn span5" %>
+         <%= link_to "Manage Components",component_integrated_view_path,:class=>"primary btn span3" %>
         </td>
       </tr>
-      <tr>
-        <td>
-          <%= image_tag("documents.jpeg", :size => "64x64") %>
-        </td>
-        <td>
-        <%= link_to  "Manage your Documents",document_integrated_view_path,:class => "primary btn span5" %>
-        </td>
-      </tr>
+
       <tr>
         <td>
           <%= image_tag("test.jpeg", :size => "70x70") %>
         </td>
         <td>
-        <%= link_to "Manage Tests" ,test_integrated_view_path,:class => "primary btn span5"%>
+        <%= link_to "Manage Tests" ,test_integrated_view_path,:class => "primary btn span3"%>
         </td>
       </tr>
-      <tr>
-        <td>
-          <%= image_tag("user.jpeg", :size => "70x70") %>
-        </td>
-        <td>
-         <%= link_to "Manage Users",user_management_path,:class=>"primary btn span5" %>
-        </td>
-      </tr>
+
 
       <tr>
         <td>
           <%= image_tag("dept.jpeg", :size => "70x70") %>
         </td>
         <td>
-         <%= link_to "Manage Departments",new_department_path,:class=>"primary btn span5" %>
+         <%= link_to "Manage Departments",department_integrated_view_path,:class=>"primary btn span3" %>
         </td>
       </tr>
 
 
-       <tr>
-        <td>
-          <%= image_tag("dept.jpeg", :size => "70x70") %>
-        </td>
-        <td>
-         <%= link_to "Manage Sets",example_sets_integrated_view_path,:class=>"primary btn span5" %>
-        </td>
-      </tr>
 
     </table>
   </div>

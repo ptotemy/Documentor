@@ -29,6 +29,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    @document_set=DocumentSet.find(@document.document_set_id)
     if !params[:get].nil?
       render :layout=>false
     end

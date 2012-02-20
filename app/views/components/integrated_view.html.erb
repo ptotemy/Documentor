@@ -20,7 +20,7 @@
 
 <div class="row">
 
-  <div class="span4" style="text-align: center">
+  <div class="span3" style="text-align: center">
     <div class="pageslide_header">
       <h1>"Components"</h1>
     </div>
@@ -29,18 +29,18 @@
     <table>
       <tr>
         <td>
-          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+          <a href="#" data-target="#new_form" data-toggle="modal">
             <%= image_tag('new.png', :size=>"32x32") %>
           </a>
         </td>
         <td>
-          <a href="#" data-controls-modal="new_form" data-backdrop="static">
+          <a href="#" data-target="#new_form" data-toggle="modal">
             <h2>Create New</h2>
           </a>
 
           <div id="new_form" class="modal hide fade">
             <div class="modal-header">
-              <a href="#" class="close"> &times; </a>
+               <a class="close" data-dismiss="modal">×</a>
 
               <h3>Create new record</h3>
             </div>
@@ -52,7 +52,7 @@
 
           <div id="edit_form" class="modal hide fade">
             <div class="modal-header">
-              <a href="#" class="close"> &times; </a>
+               <a class="close" data-dismiss="modal">×</a>
 
               <h3>Edit a record</h3>
             </div>
@@ -70,18 +70,18 @@
       </tr>
       <tr>
         <td>
-          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+          <a href="#" data-target="#upload_form" data-toggle="modal">
             <%= image_tag('upload.png', :size=>"32x32") %>
           </a>
         </td>
         <td>
-          <a href="#" data-controls-modal="upload_form" data-backdrop="static">
+          <a href="#" data-target="#upload_form" data-toggle="modal">
             <h2>Upload</h2>
           </a>
 
           <div id="upload_form" class="modal hide fade">
             <div class="modal-header">
-              <a href="#" class="close"> &times; </a>
+               <a class="close" data-dismiss="modal">×</a>
 
               <h3>A</h3>
             </div>
@@ -118,7 +118,7 @@
 
   </div>
 
-  <div class="span12">
+  <div class="span9">
     <table class="jqueried_table display" cellpadding="0" cellspacing="0" border="0" id="example">
       <thead>
       <tr>
@@ -131,7 +131,7 @@
       <% @components.each do |component| %>
           <tr>
             <td style="border-right: 1px solid #d3d3d3">
-              <a href="#" data-controls-modal="show_details" data-backdrop="static"><%= component.name %></a>
+              <a href="#" data-target="#show_details" data-toggle="modal"><%= component.name %></a>
               <span class="pull-right">
                <%= link_to "Examples", example_integrated_view_path(:component_id=>component.id) %>
                   </span>
@@ -147,7 +147,7 @@
 
           <div id="show_details" class="modal hide fade">
             <div class="modal-header">
-              <a href="#" class="close"> &times; </a>
+               <a class="close" data-dismiss="modal">×</a>
 
               <h3><%= "Component" %></h3>
             </div>

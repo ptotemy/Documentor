@@ -1,55 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DocuMentor</title>
+  <title>BrandName</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript">
       $(function() {
-          $(".edit_link").click(function(){
-              $.get("<%=params[:controller]%>"+"/"+$(this).attr("id")+"/edit",function(data){
+          $(".edit_link").click(function() {
+              $.get("<%=params[:controller]%>" + "/" + $(this).attr("id") + "/edit", function(data) {
 
                   $("#edit_form .modal-body").html(data);
-                    $("#edit_form").modal('toggle');
+                  $("#edit_form").modal('toggle');
               });
-          }) ;
+          });
       });
   </script>
   <%= yield(:head) %>
 </head>
 <body>
 <div id="wrapper">
-  <div class="topbar" style="z-index: 999999999">
-    <div class="fill">
+  <div class="navbar navbar-fixed-top" style="z-index: 999999999">
+    <div class="navbar-inner" style="z-index: 999999999">
       <div class="container">
-        <% if current_user %>
-        <% if current_user.admin? %>
-            <% @path=admin_path %>
-            <% else %>
-            <% @path=documentor_path %>
-            <% end %>
-            <% end %>
-        <a class="brand" href="<%= @path %>">DocuMentor</a>
+        <a class="brand" href="/">BrandName</a>
         <ul class="nav">
-          <!--<li><a href="#about" style="color:white;">About</a></li>-->
+          <li><a href="#about" style="color:white;">About</a></li>
           <!--<li><a href="#contact" style="color:white;">Contact</a></li>-->
         </ul>
 
         <% if !user_signed_in? %>
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class =>
-        "pull-right"}) do |f| %>
-        <%= f.email_field :email, :class=>"input-small", :placeholder=>"Email" %>
-        <%= f.password_field :password, :class=>"input-small", :placeholder=>"Password" %>
-        <%= f.submit "Sign In", :class=>"primary btn" %>
-        <% end %>
+            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class =>"pull-right navbar-form"}) do |f| %>
+                <%= f.email_field :email, :class=>"input-small", :placeholder=>"Email" %>
+                <%= f.password_field :password, :class=>"input-small", :placeholder=>"Password" %>
+                <%= f.submit "Sign In", :class=>"primary btn" %>
+            <% end %>
         <% else %>
-        <div class="pull-right" style="margin-top: 10px;color:white;">
-          <%= current_user.email %>
+            <div class="pull-right" style="margin-top: 10px;color:white;">
+              <%= current_user.email %>
               <span class="nav_link">
               | <%= link_to "Sign out", destroy_user_session_path, :method => :delete, :style=>"color:white;" %>
             </span>
-        </div>
+            </div>
         <% end %>
       </div>
     </div>
@@ -57,7 +49,7 @@
   <div class="container">
 
     <div class="page-header" style="height:100px"></div>
-    <div style="position:absolute;margin-top: -60px;" class="span16">
+    <div style="position:absolute;margin-top: -60px;" class="span12">
       <h2>  <%= yield(:page_header) %></h2>
     </div>
   </div>
@@ -72,9 +64,7 @@
 
     <% if request.fullpath=="/" %>
 
-    <footer>
-      <p>A <a href="http://www.ptotem.com">Ptotem Learning Projects</a> Initiative 2011</p>
-    </footer>
+
 
     <% end %>
   </div>
